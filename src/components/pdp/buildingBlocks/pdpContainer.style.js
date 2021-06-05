@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Box from '@material-ui/core/Box';
-import { Card, Link } from "@material-ui/core";
+import { Button, Card, Link } from "@material-ui/core";
 import { Carousel } from "react-responsive-carousel";
 
 const StyledContainer = styled(Box)` 
@@ -30,17 +30,11 @@ const StyledStickyWrapper = styled.div`
   padding: 20px;
   @media (min-width: 768px) {
     width: 450px !important;
+    position: sticky;
   }
-  position: -webkit-sticky;
-  position: sticky;
+  position: relative;
   top: 0;
   align-self: flex-start;
-`;
-
-const StyledImageThumbnail = styled.img` 
-  padding: 20px;
-  width: 300px;
-  height: 300px;
 `;
 
 const StyledProductHeading = styled.h1`
@@ -53,6 +47,7 @@ const StyledProductHeading = styled.h1`
 
 const StyledHorizontalBlock = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const StyledSecondaryHeading = styled.h2`
@@ -87,6 +82,7 @@ const StyledHorizontalLine = styled.hr`
 const StyledCard = styled(Card)`
   margin: 15px 0;
   border-color: ${props => props.selected && props.theme.palette.error.main} !important;
+  background: ${props => props.bgAdd && '#2196f3 !important'};
   text-align: center;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;  }
@@ -102,18 +98,28 @@ const StyledCardContent = styled(Card)`
 
 const StyledCarousel = styled(Carousel)`
   position: sticky;
+  @media (max-width: 768px) {
+    width: 318px !important;
+  }
+`;
+
+const StyledAddToCartButton = styled(Button) `
+  width: 100%;
+  padding: 10px !important;
+  margin-top: 10px !important; 
+  color: white !important;
 `;
 
 export {
   StyledContainer,
   StyledCarousel,
   StyledColumn,
-  StyledImageThumbnail,
   StyledProductHeading,
   StyledDescriptionUnstyledList,
   StyledHorizontalLine,
   StyledSecondaryHeading,
   StyledLink,
+  StyledAddToCartButton,
   StyledCard,
   StyledCardContent,
   StyledSecondarySubHeading,

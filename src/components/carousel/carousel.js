@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import First from '../../resources/images/1.jpeg';
 import Second from '../../resources/images/2.jpeg';
@@ -12,10 +12,10 @@ import {
 const ImageCarousel = () => {
     const carouselData = [ First, Second, Third, Fourth ];
     return (
-        <StyledCarousel>
+        <StyledCarousel swipeable >
             {carouselData.map(data => (
                 <div>
-                    <img src={data} />
+                    <img src={data} alt="hero image" />
                 </div>
             ))}
         </StyledCarousel>
