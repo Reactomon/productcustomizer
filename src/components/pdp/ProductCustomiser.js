@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../Modal/modal';
 import ProductCarousel from '../pdp/modules/productCarouselHolder/productCarousel';
 import ProductDescription from '../pdp/modules/productDescription/productDescription';
+import CartWindow from '../pdp/modules/cartWindow/cartWindow';
 import {
     StyledContainer,
     StyledColumn,
@@ -30,6 +31,7 @@ const ProductCustomizerView = () => {
     const [defaultFinalCutConfig] = useState(finalCutOptions);
     const [defaultLogicProConfig] = useState(logicProOptions);
     const [description, setDescription] = useState(detailedProductDescription);
+    const [showCartWindow, setShowCartWindow] = useState(false);
     const [runningAssetAccessoriesTotal, setRunningAssetAccessoriesTotal] = useState(239000);
     const [modalInfo, setModalInfo] = useState({ show: false });
     const [processors, setProcessors] = useState(processorVariants);
@@ -107,8 +109,17 @@ const ProductCustomizerView = () => {
                 </Modal>
             ) : null}
 
+            {showCartWindow ? (
+                <Modal handleClose={() => {
+                    setShowCartWindow(false);
+                }}>
+                    <CartWindow runningAssetAccessoriesTotal={runningAssetAccessoriesTotal}/>
+                </Modal>
+            ) : null}
+
             <ProductCarousel
                 emiData={emiData}
+                setShowCartWindow={setShowCartWindow}
                 runningAssetAccessoriesTotal={runningAssetAccessoriesTotal}
             />
 

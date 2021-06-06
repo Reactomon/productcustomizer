@@ -13,6 +13,9 @@ const StyledModalBase = styled.div`
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+  @media (max-width: 768px) {
+    padding-top: 35px;
+  }
 `;
 
 const StyledModalBaseContent = styled.div`
@@ -24,15 +27,20 @@ const StyledModalBaseContent = styled.div`
   border: 1px solid #888;
   width: 50%;
   border-radius: 19px;
+  @media (max-width: 768px) {
+    height: 589px;
+    overflow: scroll;
+  }
 `;
 
 const StyledCrossButton = styled.span`
   color: #aaaaaa;
   font-size: 30px;
   top: 103px;
-  right: 320px;
+  right: 330px;
   @media (max-width: 768px) {
     right: 319px !important;
+    top: 34px;
   }
   position: absolute;
   font-weight: bold;

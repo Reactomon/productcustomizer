@@ -4,7 +4,8 @@ import { StyledAddToCartButton, StyledCard, StyledCardContent, StyledHorizontalB
 
 const ProductCarousel = ({
     emiData = {},
-    runningAssetAccessoriesTotal = 0
+    runningAssetAccessoriesTotal = 0,
+    setShowCartWindow
 }) => {
     return (
         <StyledStickyWrapper>
@@ -16,9 +17,9 @@ const ProductCarousel = ({
                     </StyledCardContent>
                 </StyledCard>
             &nbsp; &nbsp;
-            <StyledCard variant="outlined" bgAdd>
-                    <StyledAddToCartButton variant="primary">
-                        <StyledPrice> Add To Bag &#8377;{runningAssetAccessoriesTotal}</StyledPrice>
+                <StyledCard variant="outlined" bgAdd onClick={() => setShowCartWindow(true)}>
+                    <StyledAddToCartButton variant="primary" zero>
+                        <StyledPrice> Add To Bag &#8377;{runningAssetAccessoriesTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</StyledPrice>
                     </StyledAddToCartButton>
                 </StyledCard>
             </StyledHorizontalBlock>

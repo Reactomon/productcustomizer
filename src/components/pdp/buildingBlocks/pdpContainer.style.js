@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Box from '@material-ui/core/Box';
 import { Button, Card, Link } from "@material-ui/core";
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+import { TextField } from '@material-ui/core';
 import { Carousel } from "react-responsive-carousel";
 
 const StyledContainer = styled(Box)` 
@@ -47,11 +50,38 @@ const StyledProductHeading = styled.h1`
 
 const StyledHorizontalBlock = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  @media (max-width: 768px) {
+    margin: ${props => props.spaced ? '10px 0': 0}
+  }
+`;
+
+const StyledCardImageDescription = styled.div`
+  display: flex;
+  justify-content: space-around;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const StyledHorizontalButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const StyledCartWindowWrapper = styled.div`
+  font-size: ${props => props.theme.palette.info.alt.fontSize};
 `;
 
 const StyledSecondaryHeading = styled.h2`
   font-size: 18px;
+  text-align: left;
 `;
 
 const StyledSecondarySubHeading = styled.h2`
@@ -96,6 +126,18 @@ const StyledCardContent = styled(Card)`
   height: 100%
 `;
 
+const StyledProductDescriptionThumbnail = styled(Card)`
+  font-size: ${props => props.theme.palette.heading.primary.fontSize};
+  padding: 20px;
+  height: 150px;
+  width: 100%;
+  margin: 0 20px;
+  @media (max-width: 768px) {
+    padding: 20px 0;
+    margin: 20px 0;
+  }
+`;
+
 const StyledCarousel = styled(Carousel)`
   position: sticky;
   @media (max-width: 768px) {
@@ -104,10 +146,24 @@ const StyledCarousel = styled(Carousel)`
 `;
 
 const StyledAddToCartButton = styled(Button) `
-  width: 100%;
   padding: 10px !important;
-  margin-top: 10px !important; 
+  margin-top: ${props => props.zero ? '10px !important' : 0}; 
+  margin-left: ${props => props.zero ? 0: '20px !important' }; 
+  height: 50px;
   color: white !important;
+`;
+
+const StyledPlusButton = styled(AddIcon)`
+  margin-top: 16px;
+`;
+
+const StyledMinusButton = styled(RemoveIcon)`
+  margin-top: 16px;
+`;
+
+const StyledProductCount = styled(TextField)`
+  width: 48px;
+  align-items: center;
 `;
 
 export {
@@ -115,15 +171,22 @@ export {
   StyledCarousel,
   StyledColumn,
   StyledProductHeading,
+  StyledMinusButton,
+  StyledPlusButton,
   StyledDescriptionUnstyledList,
   StyledHorizontalLine,
+  StyledCardImageDescription,
   StyledSecondaryHeading,
   StyledLink,
+  StyledProductDescriptionThumbnail,
   StyledAddToCartButton,
   StyledCard,
   StyledCardContent,
   StyledSecondarySubHeading,
+  StyledHorizontalButtonWrapper,
   StyledPrice,
+  StyledProductCount,
+  StyledCartWindowWrapper,
   StyledHorizontalBlock,
   StyledStickyWrapper
 };
