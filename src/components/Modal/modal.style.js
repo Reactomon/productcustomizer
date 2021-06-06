@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledModalBase = styled.div` 
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 9999; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
@@ -30,7 +30,10 @@ const StyledCrossButton = styled.span`
   color: #aaaaaa;
   font-size: 30px;
   top: 103px;
-  right: 353px;
+  right: 320px;
+  @media (max-width: 768px) {
+    right: 319px !important;
+  }
   position: absolute;
   font-weight: bold;
   &:hover, &:focus {
