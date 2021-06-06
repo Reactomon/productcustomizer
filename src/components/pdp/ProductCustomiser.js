@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import HeroImageCarousel from '../carousel/carousel';
 import Modal from '../Modal/modal';
+import ProductCarousel from '../pdp/modules/productCarouselHolder/productCarousel';
+import ProductDescription from '../pdp/modules/productDescription/productDescription';
 import {
     StyledContainer,
     StyledColumn,
-    StyledHorizontalBlock,
     StyledProductHeading,
     StyledDescriptionUnstyledList,
-    StyledHorizontalLine,
-    StyledSecondaryHeading,
-    StyledPrice,
-    StyledLink,
-    StyledCard,
-    StyledCardContent,
-    StyledSecondarySubHeading,
-    StyledStickyWrapper,
-    StyledAddToCartButton
 } from '../pdp/buildingBlocks/pdpContainer.style';
 
 import {
@@ -28,6 +19,8 @@ import {
     logicProOptions,
     modalData
 } from '../pdp/buildingBlocks/productConfigs';
+import AccessoryHolder from './modules/accessoryHolder/accessoryHolder';
+import AddOns from './modules/addOns/addOns';
 
 const ProductCustomizerView = () => {
     const [defaultProcessorConfig] = useState(processorVariants);
@@ -52,12 +45,12 @@ const ProductCustomizerView = () => {
 
     const handleChange = (index, setValue, defaultValue = [], descIndex = undefined) => {
         const selectedData = Object.assign({}, defaultValue[index], {});
-        if(descIndex >=0) {
-            const descArray = [ ...description ];
+        if (descIndex >= 0) {
+            const descArray = [...description];
             descArray[descIndex] = selectedData.description;
             setDescription(descArray);
         }
-     
+
         setValue(defaultValue.map((variant, i) => {
             if (i !== index) {
                 variant.selected = false;
@@ -113,156 +106,83 @@ const ProductCustomizerView = () => {
                     </StyledDescriptionUnstyledList>
                 </Modal>
             ) : null}
-            <StyledStickyWrapper>
-                <HeroImageCarousel />
-                <StyledHorizontalBlock>
-                    <StyledCard variant="outlined">
-                        <StyledCardContent>
-                            From <StyledPrice> &#8377;{emiData.monthly}/mo. with EMI Or &#8377;{emiData.total.toFixed(2)} </StyledPrice>
-                        </StyledCardContent>
-                    </StyledCard>
-                    &nbsp; &nbsp;
-                    <StyledCard variant="outlined" bgAdd>
-                        <StyledAddToCartButton variant="primary">
-                            <StyledPrice> Add To Bag &#8377;{runningAssetAccessoriesTotal}</StyledPrice>
-                        </StyledAddToCartButton>
-                    </StyledCard>
-                </StyledHorizontalBlock>
-            </StyledStickyWrapper>
+
+            <ProductCarousel
+                emiData={emiData}
+                runningAssetAccessoriesTotal={runningAssetAccessoriesTotal}
+            />
+
             <StyledColumn>
-                <React.Fragment>
-                    <StyledProductHeading>
-                        Customise your 16‑inch MacBook Pro - Space Grey
-                    </StyledProductHeading>
-                    <StyledDescriptionUnstyledList>
-                        {description.map((d, index) => (
-                            <li key={`description detail_${index}`}>
-                                {d}
-                            </li>
-                        ))}
-                    </StyledDescriptionUnstyledList>
-                    <StyledHorizontalLine />
-                </React.Fragment>
-                <React.Fragment>
-                    <StyledSecondaryHeading>
-                        Processor
-                    </StyledSecondaryHeading>
-                    <StyledLink display="block" onClick={() => handleShowModal(modalData["processors"])}>
-                        Which processor is right for you?
-                    </StyledLink>
-                    <React.Fragment>
-                        {processors.map((variant, index) => {
-                            return (
-                                <StyledCard key={`processorType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setProcessors, defaultProcessorConfig, 0)}>
-                                    <StyledCardContent>
-                                        {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
-                                    </StyledCardContent>
-                                </StyledCard>)
-                        })}
-                    </React.Fragment>
+                <ProductDescription
+                    description={description}
+                />
 
-                </React.Fragment>
-                <React.Fragment>
-                    <StyledHorizontalLine />
-                    <React.Fragment>
-                        <StyledSecondaryHeading>
-                            Memory
-                    </StyledSecondaryHeading>
-                        <StyledLink display="block" onClick={() => handleShowModal(modalData.memory)}>
-                            How much memory is right for you?
-                    </StyledLink>
-                        <React.Fragment>
-                            {memory.map((variant, index) => {
-                                return (
-                                    <StyledCard key={`memoryType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setMemory, defaultMemoryConfig, 1)}>
-                                        <StyledCardContent>
-                                            {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
-                                        </StyledCardContent>
-                                    </StyledCard>)
-                            })}
-                        </React.Fragment>
+                <AccessoryHolder
+                    title="Processor"
+                    accessorySuggestion="Which processor is right for you?"
+                    data={processors}
+                    handleShowModal={handleShowModal}
+                    setDefault={setProcessors}
+                    defaultConfig={defaultProcessorConfig}
+                    descriptionIndex={0}
+                    handleChange={handleChange}
+                    modalData={modalData}
+                />
 
-                    </React.Fragment>
-                </React.Fragment>
-                <React.Fragment>
-                    <StyledHorizontalLine />
-                    <React.Fragment>
-                        <StyledSecondaryHeading>
-                            Graphics
-                    </StyledSecondaryHeading>
-                        <StyledLink display="block" onClick={() => handleShowModal(modalData.graphics)}>
-                            Which graphics option is right for you?
-                    </StyledLink>
-                        <React.Fragment>
-                            {graphics.map((variant, index) => {
-                                return (
-                                    <StyledCard key={`graphicsType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setGraphics, defaultGraphicsConfig, 2)}>
-                                        <StyledCardContent>
-                                            {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(variant.additionalAmountRequired)}</StyledPrice>) : null}
-                                        </StyledCardContent>
-                                    </StyledCard>)
-                            })}
-                        </React.Fragment>
-                    </React.Fragment>
-                </React.Fragment>
-                <React.Fragment>
-                    <StyledHorizontalLine />
-                    <React.Fragment>
-                        <StyledSecondaryHeading>
-                            Storage
-                    </StyledSecondaryHeading>
-                        <StyledLink display="block" onClick={() => handleShowModal(modalData.storage)}>
-                            How much storage is right for you?
-                    </StyledLink>
-                        <React.Fragment>
-                            {storage.map((variant, index) => {
-                                return (
-                                    <StyledCard key={`storageType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setStorage, defaultStorageConfig, 3)}>
-                                        <StyledCardContent>
-                                            {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
-                                        </StyledCardContent>
-                                    </StyledCard>
-                                )
-                            })}
-                        </React.Fragment>
-                    </React.Fragment>
-                </React.Fragment>
-                <React.Fragment>
-                    <StyledHorizontalLine />
-                    <React.Fragment>
-                        <StyledSecondarySubHeading>
-                            Pre-installed Software
-                         </StyledSecondarySubHeading>
-                        <StyledSecondaryHeading>
-                            Final Cut Pro
-                         </StyledSecondaryHeading>
-                        <StyledHorizontalBlock>
-                            {finalCut.map((variant, index) => {
-                                return (
-                                    <StyledCard key={`firstCutPro_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setFinalCut, defaultFinalCutConfig)}>
-                                        <StyledCardContent>
-                                            {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
-                                        </StyledCardContent>
-                                    </StyledCard>
-                                )
-                            })}
-                        </StyledHorizontalBlock>
-                        <StyledSecondaryHeading>
-                            Logic Pro
-                         </StyledSecondaryHeading>
-                        <StyledHorizontalBlock>
-                            {logicPro.map((variant, index) => {
-                                return (
-                                    <StyledCard key={`firstCutPro_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setLogicPro, defaultLogicProConfig)}>
-                                        <StyledCardContent>
-                                            {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
-                                        </StyledCardContent>
-                                    </StyledCard>
-                                )
-                            })}
-                        </StyledHorizontalBlock>
-                    </React.Fragment>
-                </React.Fragment>
+                <AccessoryHolder
+                    title="Memory"
+                    accessorySuggestion="How much memory is right for you?"
+                    data={memory}
+                    handleShowModal={handleShowModal}
+                    setDefault={setMemory}
+                    defaultConfig={defaultMemoryConfig}
+                    descriptionIndex={1}
+                    handleChange={handleChange}
+                    modalData={modalData}
+                />
+
+                <AccessoryHolder
+                    title="Graphics"
+                    accessorySuggestion="Which graphics option is right for you?"
+                    data={graphics}
+                    handleShowModal={handleShowModal}
+                    setDefault={setGraphics}
+                    defaultConfig={defaultGraphicsConfig}
+                    descriptionIndex={2}
+                    handleChange={handleChange}
+                    modalData={modalData}
+                />
+
+                <AccessoryHolder
+                    title="Storage"
+                    accessorySuggestion="How much storage is right for you??"
+                    data={storage}
+                    handleShowModal={handleShowModal}
+                    setDefault={setStorage}
+                    defaultConfig={defaultStorageConfig}
+                    descriptionIndex={3}
+                    handleChange={handleChange}
+                    modalData={modalData}
+                />
+
+                <AddOns
+                    primaryHeading="Pre-installed Software"
+                    data={[
+                        {
+                            heading: 'Final Cut Pro',
+                            accessoryDetails: finalCut,
+                            defaultConfig: defaultFinalCutConfig,
+                            setDefault: setFinalCut
+                        },
+                        {
+                            heading: 'Logic Pro',
+                            accessoryDetails: logicPro,
+                            defaultConfig: defaultLogicProConfig,
+                            setDefault: setLogicPro
+                        }
+                    ]}
+                    handleChange={handleChange}
+                />
             </StyledColumn>
         </StyledContainer>
     );

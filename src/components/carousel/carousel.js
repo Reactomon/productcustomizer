@@ -15,7 +15,7 @@ const ImageCarousel = () => {
         <StyledCarousel swipeable >
             {carouselData.map(data => (
                 <div>
-                    <img src={data} alt="hero image" />
+                    <img src={data} alt="hero" />
                 </div>
             ))}
         </StyledCarousel>
