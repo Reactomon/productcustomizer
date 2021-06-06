@@ -5,11 +5,11 @@ const AccessoryHolder = ({
     title = '',
     accessorySuggestion = '',
     data = [],
-    setDefault = () => { },
+    setDefault,
     defaultConfig = [],
-    handleShowModal = () => { },
+    handleShowModal,
     descriptionIndex = 0,
-    handleChange = () => { },
+    handleChange,
     modalData = {}
 }) => (
     <React.Fragment>

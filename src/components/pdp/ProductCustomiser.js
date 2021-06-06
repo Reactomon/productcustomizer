@@ -118,7 +118,7 @@ const ProductCustomizerView = () => {
                 />
 
                 <AccessoryHolder
-                    title="Processor"
+                    title="Processors"
                     accessorySuggestion="Which processor is right for you?"
                     data={processors}
                     handleShowModal={handleShowModal}

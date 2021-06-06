@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccessoryHolder should render Accessory Holder 1`] = `
+<Fragment>
+  <styled.h2>
+    Primary Heading
+  </styled.h2>
+  <Styled(WithStyles(ForwardRef(Link)))
+    display="block"
+    onClick={[Function]}
+  >
+    Suggestions Data
+  </Styled(WithStyles(ForwardRef(Link)))>
+</Fragment>
+`;
+
+exports[`AccessoryHolder should render Accessory Holder 2`] = `
+<Fragment>
+  <styled.h2>
+    Primary Heading
+  </styled.h2>
+  <Styled(WithStyles(ForwardRef(Link)))
+    display="block"
+    onClick={[Function]}
+  >
+    Suggestions Data
+  </Styled(WithStyles(ForwardRef(Link)))>
+</Fragment>
+`;
+
+exports[`Addition should render Accessory Holder 1`] = `
+<Fragment>
+  <styled.h2>
+    Primary Heading
+  </styled.h2>
+  <Styled(WithStyles(ForwardRef(Link)))
+    display="block"
+    onClick={[Function]}
+  >
+    Suggestions Data
+  </Styled(WithStyles(ForwardRef(Link)))>
+</Fragment>
+`;
+
+exports[`should render Accessory Holder 1`] = `
+<Fragment>
+  <styled.h2>
+    Primary Heading
+  </styled.h2>
+  <Styled(WithStyles(ForwardRef(Link)))
+    display="block"
+    onClick={[Function]}
+  >
+    Suggestions Data
+  </Styled(WithStyles(ForwardRef(Link)))>
+</Fragment>
+`;
