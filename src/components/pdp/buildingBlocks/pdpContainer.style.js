@@ -20,7 +20,7 @@ const StyledPrice = styled.span`
 
 const StyledColumn = styled(Box)` 
   padding: 20px;
-  height: 500px;
+  height: 100vh;
   @media (min-width: 768px) {
     width: 450px !important;
   }
