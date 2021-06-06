@@ -36,6 +36,7 @@ const ProductCustomizerView = () => {
     const [defaultStorageConfig] = useState(storageVariants);
     const [defaultFinalCutConfig] = useState(finalCutOptions);
     const [defaultLogicProConfig] = useState(logicProOptions);
+    const [description, setDescription] = useState(detailedProductDescription);
     const [runningAssetAccessoriesTotal, setRunningAssetAccessoriesTotal] = useState(239000);
     const [modalInfo, setModalInfo] = useState({ show: false });
     const [processors, setProcessors] = useState(processorVariants);
@@ -49,8 +50,14 @@ const ProductCustomizerView = () => {
         setModalInfo({ ...data, show: true });
     }
 
-    const handleChange = (customization, index, setValue, defaultValue = []) => {
+    const handleChange = (index, setValue, defaultValue = [], descIndex = undefined) => {
         const selectedData = Object.assign({}, defaultValue[index], {});
+        if(descIndex >=0) {
+            const descArray = [ ...description ];
+            descArray[descIndex] = selectedData.description;
+            setDescription(descArray);
+        }
+     
         setValue(defaultValue.map((variant, i) => {
             if (i !== index) {
                 variant.selected = false;
@@ -128,7 +135,7 @@ const ProductCustomizerView = () => {
                         Customise your 16‑inch MacBook Pro - Space Grey
                     </StyledProductHeading>
                     <StyledDescriptionUnstyledList>
-                        {detailedProductDescription.map((d, index) => (
+                        {description.map((d, index) => (
                             <li key={`description detail_${index}`}>
                                 {d}
                             </li>
@@ -146,7 +153,7 @@ const ProductCustomizerView = () => {
                     <React.Fragment>
                         {processors.map((variant, index) => {
                             return (
-                                <StyledCard key={`processorType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(processors, index, setProcessors, defaultProcessorConfig, 'processor')}>
+                                <StyledCard key={`processorType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setProcessors, defaultProcessorConfig, 0)}>
                                     <StyledCardContent>
                                         {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
                                     </StyledCardContent>
@@ -167,7 +174,7 @@ const ProductCustomizerView = () => {
                         <React.Fragment>
                             {memory.map((variant, index) => {
                                 return (
-                                    <StyledCard key={`memoryType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(memory, index, setMemory, defaultMemoryConfig, 'memory')}>
+                                    <StyledCard key={`memoryType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setMemory, defaultMemoryConfig, 1)}>
                                         <StyledCardContent>
                                             {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
                                         </StyledCardContent>
@@ -189,7 +196,7 @@ const ProductCustomizerView = () => {
                         <React.Fragment>
                             {graphics.map((variant, index) => {
                                 return (
-                                    <StyledCard key={`graphicsType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(graphics, index, setGraphics, defaultGraphicsConfig, 'graphics')}>
+                                    <StyledCard key={`graphicsType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setGraphics, defaultGraphicsConfig, 2)}>
                                         <StyledCardContent>
                                             {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(variant.additionalAmountRequired)}</StyledPrice>) : null}
                                         </StyledCardContent>
@@ -210,7 +217,7 @@ const ProductCustomizerView = () => {
                         <React.Fragment>
                             {storage.map((variant, index) => {
                                 return (
-                                    <StyledCard key={`storageType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(storage, index, setStorage, defaultStorageConfig, 'storage')}>
+                                    <StyledCard key={`storageType_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setStorage, defaultStorageConfig, 3)}>
                                         <StyledCardContent>
                                             {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
                                         </StyledCardContent>
@@ -232,7 +239,7 @@ const ProductCustomizerView = () => {
                         <StyledHorizontalBlock>
                             {finalCut.map((variant, index) => {
                                 return (
-                                    <StyledCard key={`firstCutPro_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(finalCut, index, setFinalCut, defaultFinalCutConfig, 'finalCut')}>
+                                    <StyledCard key={`firstCutPro_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setFinalCut, defaultFinalCutConfig)}>
                                         <StyledCardContent>
                                             {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
                                         </StyledCardContent>
@@ -246,7 +253,7 @@ const ProductCustomizerView = () => {
                         <StyledHorizontalBlock>
                             {logicPro.map((variant, index) => {
                                 return (
-                                    <StyledCard key={`firstCutPro_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(logicPro, index, setLogicPro, defaultLogicProConfig, 'logicPro')}>
+                                    <StyledCard key={`firstCutPro_${index}`} selected={variant.selected} variant="outlined" onClick={() => handleChange(index, setLogicPro, defaultLogicProConfig)}>
                                         <StyledCardContent>
                                             {variant.description} {Math.abs(variant.additionalAmountRequired) ? (<StyledPrice> &nbsp; {variant.sign}&#8377;{Math.abs(Math.abs(variant.additionalAmountRequired))}</StyledPrice>) : null}
                                         </StyledCardContent>
