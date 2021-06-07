@@ -16,9 +16,10 @@ import {
 import ProductImage from '../../../../resources/images/1.jpeg';
 
 const CartWindow = ({
+    qty: productQuantity,
     runningAssetAccessoriesTotal
 }) => {
-    const [qty, setQty] = useState(1);
+    const [qty, setQty] = useState(productQuantity);
     const abstractDescription = detailedProductDescription.slice(0, 4);
     return (
         <React.Fragment>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
 import {
     StyledAddToCartButton,
     StyledHorizontalBlock,
@@ -27,8 +26,12 @@ const ProductCountKeeper = ({
                                 setQty(qty - 1);
                                 setTotalAmount(totalAmount-runningAssetAccessoriesTotal)
                             }
+                            else {
+                                return;
+                            }
                         }} />
-                        <StyledProductCount defaultValue={qty} value={qty} onChange={event => setQty(event?.target?.value)} id="outlined-basic" label="Qty" variant="outlined" />
+                        <StyledProductCount 
+                            defaultValue={qty} value={qty} onChange={event => setQty(event?.target?.value)} id="outlined-basic" label="Qty" variant="outlined" />
                         <StyledPlusButton onClick={() => {
                             setQty(qty + 1)
                             setTotalAmount(runningAssetAccessoriesTotal * (qty + 1))

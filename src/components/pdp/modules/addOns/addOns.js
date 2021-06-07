@@ -2,9 +2,9 @@ import React from 'react';
 import { StyledCard, StyledCardContent, StyledHorizontalBlock, StyledPrice, StyledSecondaryHeading, StyledSecondarySubHeading } from '../../buildingBlocks/pdpContainer.style';
 
 const AddOns = ({
-    primaryHeading = '',
-    data = [],
-    handleChange = () => { }
+    primaryHeading,
+    data,
+    handleChange
 }) => (
     <React.Fragment>
         <StyledHorizontalBlock />

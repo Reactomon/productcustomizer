@@ -113,7 +113,7 @@ const ProductCustomizerView = () => {
                 <Modal handleClose={() => {
                     setShowCartWindow(false);
                 }}>
-                    <CartWindow runningAssetAccessoriesTotal={runningAssetAccessoriesTotal}/>
+                    <CartWindow qty={1} runningAssetAccessoriesTotal={runningAssetAccessoriesTotal}/>
                 </Modal>
             ) : null}
 

@@ -3,8 +3,8 @@ import ImageCarousel from '../../../carousel/carousel';
 import { StyledAddToCartButton, StyledCard, StyledCardContent, StyledHorizontalBlock, StyledPrice, StyledStickyWrapper } from '../../buildingBlocks/pdpContainer.style';
 
 const ProductCarousel = ({
-    emiData = {},
-    runningAssetAccessoriesTotal = 0,
+    emiData,
+    runningAssetAccessoriesTotal,
     setShowCartWindow
 }) => {
     return (
