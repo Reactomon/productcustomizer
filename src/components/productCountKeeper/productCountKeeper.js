@@ -25,7 +25,7 @@ const ProductCountKeeper = ({
                         <StyledMinusButton onClick={() => {
                             if (qty >= 1) {
                                 setQty(qty - 1);
-                                setTotalAmount(runningAssetAccessoriesTotal * (qty - 1))
+                                setTotalAmount(totalAmount-runningAssetAccessoriesTotal)
                             }
                         }} />
                         <StyledProductCount defaultValue={qty} value={qty} onChange={event => setQty(event?.target?.value)} id="outlined-basic" label="Qty" variant="outlined" />
